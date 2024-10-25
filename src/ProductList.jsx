@@ -215,7 +215,8 @@ function ProductList() {
             ]
         }
     ];
-   const styleObj={
+    
+const styleObj={
     backgroundColor: '#4CAF50',
     color: '#fff!important',
     padding: '15px',
@@ -224,17 +225,24 @@ function ProductList() {
     alignIems: 'center',
     fontSize: '20px',
    }
-   const styleObjUl={
+
+const styleObjUl={
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '1100px',
-   }
-   const styleA={
+}
+
+const stylePlants = {
+    margin: '0 auto', // Centers the element horizontally
+    textAlign: 'center', // Centers the text inside the element
+};
+
+const styleA={
     color: 'white',
     fontSize: '30px',
     textDecoration: 'none',
-   }
+}
 
 const handleCartClick = (e) => {
     e.preventDefault();
@@ -269,7 +277,7 @@ const handleAddToCart = (product) => {
                     <div className="luxury">
                         <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
                         <a href="/" style={{textDecoration:'none'}}>
-                            <div>
+                            <div className='logo-text'>
                                 <h3 style={{color:'white'}}>Paradise Nursery</h3>
                                 <i style={{color:'white'}}>Where Green Meets Serenity</i>
                             </div>
@@ -286,17 +294,17 @@ const handleAddToCart = (product) => {
 
             {!showCart ? (
                 <div className='product-grid'>
-                    {plantsArray.map((category , ctg_index) => (
-                        <div key={ctg_index}>
-                            <div className='category'><h1>{category.category}</h1></div>
-                            <div className='productList'>
+                    {plantsArray.map((category , index) => (
+                        <div key={index}>
+                            <h1><div className='ctg'>{category.category}</div></h1>
+                            <div className='product-list'>
                                 {category.plants.map((plant , platIndex) => (
                                     <div className='product-card' key={platIndex}>
-                                        <div className='img'><img src={plant.image} alt={plant.name} /></div>
-                                        <div className='plantName'>{plant.name}</div>
-                                        <div className='plantDescription'>{plant.description}</div>
-                                        <div className='planCost'>${plant.cost}</div>
-                                        <button className='addToCart-btn'onClick={handleAddToCart}>Add to Cart</button>
+                                        <img src={plant.image} alt={plant.name} />
+                                        <div className='product-title'>{plant.name}</div>
+                                        <div className='product-description'>{plant.description}</div>
+                                        <div className='product-cost'>{plant.cost}</div>
+                                        <button className='product-button'onClick={handleAddToCart}>Add to Cart</button>
                                     </div>
                                     
                                 ))}

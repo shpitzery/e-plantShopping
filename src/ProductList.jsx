@@ -260,16 +260,16 @@ const handleContinueShopping = (e) => {
     setShowCart(false);
 };
 
-const handleAddToCart = (product) => {
-    dispach(addItem(product));
+const handleAddToCart = (plant) => {
+    dispach(addItem(plant));
     /**
-     * @setAddedToCart - Set the product name as key and value as true to indicate it's added to cart.
+     * @setAddedToCart - Set the plant name as key and value as true to indicate it's added to cart.
      * @param prevState - represents the previous state of addedToCart, which contains key-value pairs for products that have been added to the cart.
          * The [] allows to dynamically use the value of product.name.
          */
     setAddedToCart((prevState) => ({
         ...prevState,
-        [product.name] : true,
+        [plant.name] : true,
     }));
 }
 
@@ -310,7 +310,7 @@ const handleAddToCart = (product) => {
                                         <div className='product-title'>{plant.name}</div>
                                         <div className='product-description'>{plant.description}</div>
                                         <div className='product-cost'>{plant.cost}</div>
-                                        <button className='product-button'onClick={handleAddToCart}>Add to Cart</button>
+                                        <button className='product-button'onClick={() => handleAddToCart(plant)}>Add to Cart</button>
                                     </div>
                                     
                                 ))}

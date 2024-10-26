@@ -6,7 +6,7 @@ import { addItem } from './CartSlice';
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-    const [addedToCart , setAddedToCart] = useState({})
+    const [addedToCart , setAddedToCart] = useState({}); // Initial state as an empty object, which allows to store key-value pairs.
 
     const plantsArray = [
         {
@@ -250,7 +250,7 @@ const handleCartClick = (e) => {
 };
 
 const handlePlantsClick = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // prevents the navigation to the URL specified in the href attribute or page jump from happening, allowing to handle the click event using JavaScript instead (without triggering a full page refresh or jump)
     setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
     setShowCart(false); // Hide the cart when navigating to About Us
 };
@@ -262,9 +262,14 @@ const handleContinueShopping = (e) => {
 
 const handleAddToCart = (product) => {
     dispach(addItem(product));
+    /**
+     * @setAddedToCart - Set the product name as key and value as true to indicate it's added to cart.
+     * @param prevState - represents the previous state of addedToCart, which contains key-value pairs for products that have been added to the cart.
+         * The [] allows to dynamically use the value of product.name.
+         */
     setAddedToCart((prevState) => ({
         ...prevState,
-        [product.name] : true, // Set the product name as key and value as true to indicate it's added to cart
+        [product.name] : true,
     }));
 }
 
@@ -286,6 +291,7 @@ const handleAddToCart = (product) => {
                 </div>
 
                 <div style={styleObjUl}>
+                    {/** The href="#" means this link doesn’t navigate anywhere when clicked. Instead, it’s used to trigger a JavaScript function via the onClick event. */}
                     <div><a href="#" onClick={(e)=>handlePlantsClick(e)} style={styleA}>Plants</a></div>
                     <div><a href="#" onClick={(e) => handleCartClick(e)} style={styleA}><h1 className='cart'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="68" width="68"><rect width="156" height="156" fill="none"></rect><circle cx="80" cy="216" r="12"></circle><circle cx="184" cy="216" r="12"></circle><path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path></svg></h1></a></div>
                 </div>

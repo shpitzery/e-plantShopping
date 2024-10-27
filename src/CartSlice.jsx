@@ -7,13 +7,12 @@ export const CartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-      const {name , cost, image} = action.payload;
-      const existingItem = state.items.find(item => item.name === name);
+      const existingItem = state.items.find(item => item.name === action.payload.name);
       if(existingItem) {
-        existingItem.quantity++;
+        existingItem.quantity += 1;
       }
       else {
-        state.items.push({name, image, cost, quantity: 1}); // use {} to add an object
+        state.items.push({...action.payload , quantity: 1}); // use {} to add an object
       }
     },
 
@@ -26,7 +25,7 @@ export const CartSlice = createSlice({
       const {name , quantity} = action.payload;
       const itemToUpdate = state.items.find(item => item.name === name);
       if(itemToUpdate) {
-        itemToUpdate.quantity = quantity; 
+        itemToUpdate.quantity = quantity;
       }
     },
   },

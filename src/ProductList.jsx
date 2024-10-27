@@ -2,11 +2,13 @@ import React, { useState,useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
+import { useDispatch } from 'react-redux';
 
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart , setAddedToCart] = useState({}); // Initial state as an empty object, which allows to store key-value pairs.
+    const dispatch = useDispatch();
 
     const plantsArray = [
         {
@@ -261,7 +263,7 @@ const handleContinueShopping = (e) => {
 };
 
 const handleAddToCart = (plant) => {
-    dispach(addItem(plant));
+    dispatch(addItem(plant));
     /**
      * @setAddedToCart - Set the plant name as key and value as true to indicate it's added to cart.
      * @param prevState - represents the previous state of addedToCart, which contains key-value pairs for products that have been added to the cart.
@@ -310,9 +312,13 @@ const handleAddToCart = (plant) => {
                                         <div className='product-title'>{plant.name}</div>
                                         <div className='product-description'>{plant.description}</div>
                                         <div className='product-cost'>{plant.cost}</div>
-                                        <button className='product-button'onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                        <button
+                                        className={`product-button ${addedToCart[plant.name] ? 'added-to-cart' : ''}`} // backticks (``) allow to insert the values of variables / the result expressions directly inside a string without having to break the string and manually concatenate the values.
+                                        onClick={() => handleAddToCart(plant)} // using an arrow func. to creates an anonymous function (a function that doesn’t have a name) that React can call later - waits until the button is clicked to execute the anonymous function, which then calls handleAddToCart(plant).
+                                        >
+                                            {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
+                                        </button>
                                     </div>
-                                    
                                 ))}
                             </div>
                         </div>

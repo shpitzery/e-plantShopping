@@ -84,19 +84,6 @@ body {
     font-size: 1.1rem;
 }
 
-    /*product-card {
-    flex: 0 0 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap */
-    /*max-width: calc(26.33% - 20px); /* Adjust max-width for 3 cards per row with 20px gap */
-    /*margin-bottom: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-    position: relative;
-    
-    gap: 20px; */
-
 .product-card img {
     max-width: 100%;
     height: 600px;
@@ -135,8 +122,8 @@ body {
     background-color: #e74c3c;
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    cursor: pointer;
+    padding: 10px 20px; /* 10px is the padding on the top and bottom and 20px is the padding on the left and right of the button. */
+    cursor: pointer; /* changes the cursor to a pointer (a hand icon) when the user hover over the button - indicates to users that the button is clickable. */
     transition: background-color 0.3s ease-in-out;
     margin-top: 10px;
 }
@@ -231,18 +218,18 @@ body {
 }
 /* ProductList.css */
 
-.product-button {
+.product-button { /* Overrides the .product-button above. */
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 20px; /* 10px is the padding on the top and bottom and 20px is the padding on the left and right of the button. */
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     transition-duration: 0.4s;
-    cursor: pointer;
+    cursor: pointer; /* changes the cursor to a pointer (a hand icon) when the user hover over the button - indicates to users that the button is clickable. */
   }
   
   .product-button:hover {
@@ -251,7 +238,9 @@ body {
   
   .product-button.added-to-cart {
     background-color: grey; /* Grey when product is added */
+    cursor: default; /* Change cursor to default when button is disabled */
   }
+
   @media (max-width: 1200px) {
     .product-card {
       flex: 1 1 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap on medium screens */

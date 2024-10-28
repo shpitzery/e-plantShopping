@@ -199,6 +199,10 @@ body {
     top: 40px;
 }
 
+.ctg {
+    padding-top: 30px;
+}
+
 .cart{
     color: white;
     display: flex;

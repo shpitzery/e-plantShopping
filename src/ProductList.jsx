@@ -2,11 +2,15 @@ import React, { useState,useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function ProductList({ addedToCart , setAddedToCart}) {
-    const [showCart, setShowCart] = useState(false); 
-    const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+    // State to control the visibility of the Cart page
+    const [showCart, setShowCart] = useState(false);
+    // State to control the visibility of the About Us page
+    const [showPlants, setShowPlants] = useState(false);
+    // Get the cart items from Redux store
+    const cart = useSelector(state => state.cart.items);
     const dispatch = useDispatch();
 
     const plantsArray = [
@@ -235,8 +239,10 @@ const styleObjUl={
 }
 
 const stylePlants = {
-    margin: '0 auto', // Centers the element horizontally
-    textAlign: 'center', // Centers the text inside the element
+    // Centers the element horizontally
+    margin: '0 auto',
+    // Centers the text inside the element
+    textAlign: 'center',
 };
 
 const styleA={
@@ -247,13 +253,17 @@ const styleA={
 
 const handleCartClick = (e) => {
     e.preventDefault();
-    setShowCart(true); // Set showCart to true when cart icon is clicked
+    // Set showCart to true when cart icon is clicked
+    setShowCart(true);
 };
 
 const handlePlantsClick = (e) => {
-    e.preventDefault(); // prevents the navigation to the URL specified in the href attribute or page jump from happening, allowing to handle the click event using JavaScript instead (without triggering a full page refresh or jump)
-    setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
-    setShowCart(false); // Hide the cart when navigating to About Us
+    // prevents the navigation to the URL specified in the href attribute or page jump from happening, allowing to handle the click event using JavaScript instead (without triggering a full page refresh or jump)
+    e.preventDefault(); 
+    // Set showAboutUs to true when "About Us" link is clicked
+    setShowPlants(true);
+    // Hide the cart when navigating to About Us
+    setShowCart(false); 
 };
 
 const handleContinueShopping = (e) => {
@@ -274,6 +284,15 @@ const handleAddToCart = (plant) => {
     }));
 }
 
+/**
+ * @method reduce() - A method that applies a function to each element of the array, combining them into a single result
+ * @template {array.reduce((accumulator, currentValue) => { -function- } , initialValue);}
+ * @param accumulator: holds the accumulated value (the total, in this case).
+ * @param currentValue: the current item in the array during each iteration (each item in the cart).
+ * @param initialValue: the starting value for the accumulator. In this case, it’s set to 0.
+*/
+const total_items_in_cart = cart.reduce((total , item) => total + item.quantity , 0);
+
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -293,7 +312,23 @@ const handleAddToCart = (plant) => {
                 <div style={styleObjUl}>
                     {/** The href="#" means this link doesn’t navigate anywhere when clicked. Instead, it’s used to trigger a JavaScript function via the onClick event. */}
                     <div><a href="#" onClick={(e)=>handlePlantsClick(e)} style={styleA}>Plants</a></div>
-                    <div><a href="#" onClick={(e) => handleCartClick(e)} style={styleA}><h1 className='cart'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="68" width="68"><rect width="156" height="156" fill="none"></rect><circle cx="80" cy="216" r="12"></circle><circle cx="184" cy="216" r="12"></circle><path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path></svg></h1></a></div>
+                    <div>
+                        <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}>
+                            <h1 className='cart'>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="68" width="68">
+                                    <rect width="156" height="156" fill="none"></rect>
+                                    <circle cx="80" cy="216" r="12"></circle>
+                                    <circle cx="184" cy="216" r="12"></circle>
+                                    <path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path>
+                                </svg>
+                            </h1>
+                            {total_items_in_cart > 0 && (
+                                <span className='cart_quantity_count'>
+                                    {total_items_in_cart}
+                                </span>
+                            )}
+                        </a>
+                    </div>
                 </div>
                 
             </div>

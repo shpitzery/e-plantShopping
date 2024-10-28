@@ -11,6 +11,7 @@ const CartItem = ({ onContinueShopping , addedToCart , setAddedToCart}) => {
   const calculateTotalAmount = () => {
     let totalAmount = 0;
     cart.map(item => (totalAmount += calculateTotalCost(item)));
+    return totalAmount;
   };
 
   const handleContinueShopping = (e) => {
@@ -22,7 +23,8 @@ const CartItem = ({ onContinueShopping , addedToCart , setAddedToCart}) => {
   };
 
   const handleIncrement = (item) => {
-    dispatch(updateQuantity(item.name , item.quantity + 1));
+    // pass a single object as the payload
+    dispatch(updateQuantity({ name: item.name , quantity: item.quantity + 1} ));
   };
 
   const handleDecrement = (item) => {
@@ -30,7 +32,7 @@ const CartItem = ({ onContinueShopping , addedToCart , setAddedToCart}) => {
       handleRemove(item);
     }
     else {
-      dispatch(updateQuantity(item.name , item.quantity - 1));
+      dispatch(updateQuantity( {name: item.name , quantity: item.quantity - 1} ));
     }
   };
 
@@ -44,7 +46,7 @@ const CartItem = ({ onContinueShopping , addedToCart , setAddedToCart}) => {
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
-    (item.cost * item.quantity);
+    return item.cost * item.quantity;
   };
 
   return (

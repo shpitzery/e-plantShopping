@@ -25,7 +25,7 @@ export const CartSlice = createSlice({
       const {name , quantity} = action.payload;
       const itemToUpdate = state.items.find(item => item.name === name);
       if(itemToUpdate) {
-        itemToUpdate.quantity = quantity;
+        itemToUpdate.quantity = quantity; // Immer library (which is used in Redux Toolkit) creates a new state object that reflects these change, without actually mutating the original state. Redux Toolkit replaces the old state.items with the updated one.
       }
     },
   },

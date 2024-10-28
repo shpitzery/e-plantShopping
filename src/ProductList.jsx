@@ -245,12 +245,6 @@ const stylePlants = {
     textAlign: 'center',
 };
 
-const styleA={
-    color: 'white',
-    fontSize: '30px',
-    textDecoration: 'none',
-}
-
 const handleCartClick = (e) => {
     e.preventDefault();
     // Set showCart to true when cart icon is clicked
@@ -302,7 +296,7 @@ const total_items_in_cart = cart.reduce((total , item) => total + item.quantity 
                         <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
                         <a href="/" style={{textDecoration:'none'}}>
                             <div className='logo-text'>
-                                <h3 style={{color:'white'}}> Paradise Nursery </h3>
+                                <h3 style={{color:'white'}} id='top'> Paradise Nursery </h3>
                                 <i style={{color:'white'}}> Where Green Meets Serenity </i>
                             </div>
                         </a>
@@ -311,9 +305,9 @@ const total_items_in_cart = cart.reduce((total , item) => total + item.quantity 
 
                 <div style={styleObjUl}>
                     {/** The href="#" means this link doesn’t navigate anywhere when clicked. Instead, it’s used to trigger a JavaScript function via the onClick event. */}
-                    <div><a href="#" onClick={(e)=>handlePlantsClick(e)} style={styleA}>Plants</a></div>
+                    <div className='plant-text'><a href="#" onClick={(e)=>handlePlantsClick(e)}>Plants</a></div>
                     <div>
-                        <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}>
+                        <a href="#" onClick={(e) => handleCartClick(e)}>
                             <h1 className='cart'>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="68" width="68">
                                     <rect width="156" height="156" fill="none"></rect>

@@ -181,15 +181,33 @@ body {
     width: 650px;
     font-size: 19px;
 }
+
+.logo-text {
+    margin: 10px;
+}
+
+#top {
+    padding: 5px;
+}
+
+.plant-text a {
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+    position: absolute;
+    right: 100px;
+    top: 40px;
+}
+
 .cart{
     color: white;
     display: flex;
 }
+
 .cart_quantity_count{
     position: absolute;
-    top: 39.5px;
+    top: 42px;
     right: 38px;
-    /* background: red; */
     color: white;
     border-radius: 50%;
     padding: 4px 8px;
@@ -200,13 +218,6 @@ body {
     align-items: center;
     width: 20px;
     height: 20px;
-    
-    /* margin-top: 16px;
-    /* background-color: red;
-    margin-left: 27px;
-    position: absolute;
-    font-size: 29px; */
-
 }
 .plantname_heading{
    display: flex;
@@ -225,7 +236,8 @@ body {
     
 }
 /* Add Media Query for responsiveness */
-@media (max-width: 768px) {
+
+@media (max-width: 768px) { /* The styles inside the @media block will only apply when the screen width is less than or equal to 768 pixels */
     .product-card {
         flex: 1 1 calc(50% - 20px); /* Adjust width for 2 cards per row with 20px gap on smaller screens */
         max-width: calc(50% - 20px); /* Adjust max-width for 2 cards per row with 20px gap on smaller screens */

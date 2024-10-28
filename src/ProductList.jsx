@@ -4,10 +4,9 @@ import CartItem from './CartItem';
 import { addItem } from './CartSlice';
 import { useDispatch } from 'react-redux';
 
-function ProductList() {
+function ProductList({ addedToCart , setAddedToCart}) {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-    const [addedToCart , setAddedToCart] = useState({}); // Initial state as an empty object, which allows to store key-value pairs.
     const dispatch = useDispatch();
 
     const plantsArray = [
@@ -265,16 +264,15 @@ const handleContinueShopping = (e) => {
 const handleAddToCart = (plant) => {
     dispatch(addItem(plant));
     /**
-     * @setAddedToCart - Set the plant name as key and value as true to indicate it's added to cart.
+     * @setAddedToCart - Set the product name as key and value as true to indicate it's added to cart.
      * @param prevState - represents the previous state of addedToCart, which contains key-value pairs for products that have been added to the cart.
-         * The [] allows to dynamically use the value of product.name.
-         */
-    setAddedToCart((prevState) => ({
+     * The [] allows to dynamically use the value of product.name.
+    */
+      setAddedToCart((prevState) => ({
         ...prevState,
         [plant.name] : true,
     }));
 }
-
 
     return (
         <div>
@@ -285,8 +283,8 @@ const handleAddToCart = (plant) => {
                         <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
                         <a href="/" style={{textDecoration:'none'}}>
                             <div className='logo-text'>
-                                <h3 style={{color:'white'}}>Paradise Nursery</h3>
-                                <i style={{color:'white'}}>Where Green Meets Serenity</i>
+                                <h3 style={{color:'white'}}> Paradise Nursery </h3>
+                                <i style={{color:'white'}}> Where Green Meets Serenity </i>
                             </div>
                         </a>
                     </div>
@@ -300,6 +298,7 @@ const handleAddToCart = (plant) => {
                 
             </div>
 
+            {/* If showCart is false, it shows the product list. If showCart is true, it shows CartItem */}
             {!showCart ? (
                 <div className='product-grid'>
                     {plantsArray.map((category , index) => (
@@ -313,8 +312,9 @@ const handleAddToCart = (plant) => {
                                         <div className='product-description'>{plant.description}</div>
                                         <div className='product-cost'>{plant.cost}</div>
                                         <button
-                                        className={`product-button ${addedToCart[plant.name] ? 'added-to-cart' : ''}`} // backticks (``) allow to insert the values of variables / the result expressions directly inside a string without having to break the string and manually concatenate the values.
+                                        className={'product-button'} 
                                         onClick={() => handleAddToCart(plant)} // using an arrow func. to creates an anonymous function (a function that doesn’t have a name) that React can call later - waits until the button is clicked to execute the anonymous function, which then calls handleAddToCart(plant).
+                                        disabled = {addedToCart[plant.name]}
                                         >
                                             {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
                                         </button>
@@ -327,7 +327,12 @@ const handleAddToCart = (plant) => {
             ) 
             :
             (
-                <CartItem onContinueShopping={handleContinueShopping}/>
+                // This is where rendering the CartItem component - this is the time to pass props
+                <CartItem 
+                onContinueShopping={handleContinueShopping}
+                addedToCart={addedToCart}
+                setAddedToCart={setAddedToCart}
+                />
             )};
         </div>
     );

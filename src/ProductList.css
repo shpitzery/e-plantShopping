@@ -236,7 +236,7 @@ body {
     background-color: #45a049;
   }
   
-  .product-button.added-to-cart {
+  .product-button:disabled { /* apply to buttons (or other elements) with the product-button class that are disabled */
     background-color: grey; /* Grey when product is added */
     cursor: default; /* Change cursor to default when button is disabled */
   }

@@ -11,6 +11,7 @@ function ProductList({ addedToCart , setAddedToCart}) {
     const [showPlants, setShowPlants] = useState(false);
     // Get the cart items from Redux store
     const cart = useSelector(state => state.cart.items);
+    const total_items_in_cart = cart.length;
     const dispatch = useDispatch();
 
     const plantsArray = [
@@ -277,15 +278,6 @@ const handleAddToCart = (plant) => {
         [plant.name] : true,
     }));
 }
-
-/**
- * @method reduce() - A method that applies a function to each element of the array, combining them into a single result
- * @template {array.reduce((accumulator, currentValue) => { -function- } , initialValue);}
- * @param accumulator: holds the accumulated value (the total, in this case).
- * @param currentValue: the current item in the array during each iteration (each item in the cart).
- * @param initialValue: the starting value for the accumulator. In this case, it’s set to 0.
-*/
-const total_items_in_cart = cart.reduce((total , item) => total + item.quantity , 0);
 
     return (
         <div>

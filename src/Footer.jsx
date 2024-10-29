@@ -1,8 +1,10 @@
 import React from "react";
+import './Footer.css';
+
 const Footer = () => {
     return (
         <>
-        <footer>
+        <footer className="footer">
             <p> &copy; 2024 Paradise Nursery Inc. all rights reserved. </p>
             <nav>
                 <ul>

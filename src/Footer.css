@@ -1,0 +1,37 @@
+.footer {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: relative; /* allows the absolutely positioned elements to be positioned relative to the footer, instead of the entire page */
+    min-height: 100px;
+}
+
+.footer p {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    margin: 0;
+    font-size: 14px;
+}
+
+.footer nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+}
+
+.footer nav ul li a {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 22px;
+    color: white;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.footer nav ul li a:hover {
+    font-weight: bold;
+    color: rgb(0, 81, 255);
+}
+

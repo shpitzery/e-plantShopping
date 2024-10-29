@@ -3,6 +3,7 @@ import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import Footer from './Footer';
 
 function ProductList({ addedToCart , setAddedToCart}) {
     // State to control the visibility of the Cart page
@@ -348,13 +349,14 @@ const handleAddToCart = (plant) => {
             ) 
             :
             (
-                // This is where rendering the CartItem component - this is the time to pass props
+                // Rendering the CartItem component - this is the time to pass props
                 <CartItem 
                 onContinueShopping={handleContinueShopping}
                 addedToCart={addedToCart}
                 setAddedToCart={setAddedToCart}
                 />
             )};
+            <Footer />
         </div>
     );
 }

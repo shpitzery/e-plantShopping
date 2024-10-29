@@ -223,23 +223,6 @@ function ProductList({ addedToCart , setAddedToCart}) {
         }
     ];
     
-const styleObj={
-    backgroundColor: '#4CAF50',
-    color: '#fff!important',
-    padding: '15px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignIems: 'center',
-    fontSize: '20px',
-   }
-
-const styleObjUl={
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '1100px',
-}
-
 const stylePlants = {
     // Centers the element horizontally
     margin: '0 auto',
@@ -282,7 +265,7 @@ const handleAddToCart = (plant) => {
 
     return (
         <div>
-            <div className="navbar" style={styleObj}>
+            <div className="navbar" >
 
                 <div className="tag">
                     <div className="luxury">
@@ -296,7 +279,7 @@ const handleAddToCart = (plant) => {
                     </div>
                 </div>
 
-                <div style={styleObjUl}>
+                <div className='navbar-buttons'>
                     {/** The href="#" means this link doesn’t navigate anywhere when clicked. Instead, it’s used to trigger a JavaScript function via the onClick event. */}
                     <div className='plant-text'><a href="#" onClick={(e)=>handlePlantsClick(e)}>Plants</a></div>
                     <div>
@@ -349,7 +332,12 @@ const handleAddToCart = (plant) => {
             ) 
             :
             (
-                // Rendering the CartItem component - this is the time to pass props
+
+                /** 
+                 * Rendering the CartItem component.
+                 * @Important
+                 * Passing the below props to CartItem component through here and not App.jsx to avoid double rendering.
+                */
                 <CartItem 
                 onContinueShopping={handleContinueShopping}
                 addedToCart={addedToCart}
